@@ -1,0 +1,593 @@
+
+🔍 DIRSUBFINDER - Complete Tool Documentation
+📋 FILE: DirSubFinder_Complete_Guide.md
+DIRSUBFINDER
+Professional Subdomain & Directory Enumeration Tool
+Version: 1.0.0
+Author: Vimal Bijalwan
+Type: Cybersecurity Reconnaissance Tool
+Platform: Python 3.8+ (Cross-Platform)
+
+📌 TABLE OF CONTENTS
+Tool Overview
+
+Complete Use Cases
+
+Installation Guide
+
+Command Line Interface
+
+All Commands with Examples
+
+Real-World Scenarios
+
+Output Analysis
+
+Troubleshooting
+
+Best Practices
+
+Ethical Guidelines
+
+🎯 TOOL OVERVIEW
+What is DirSubFinder?
+DirSubFinder is a professional-grade reconnaissance tool designed for authorized security testing. It automates the discovery of:
+
+Subdomains (e.g., api.example.com, admin.example.com)
+
+Web Directories (e.g., /admin, /login, /api)
+
+HTTP/HTTPS Services (Checking availability and status codes)
+
+Why Use DirSubFinder?
+Feature	Benefit
+Automated Discovery	Find hidden subdomains and directories without manual effort
+Fast Scanning	Concurrent threading for quick results
+Professional Output	Clean, colored CLI with detailed summaries
+Multiple Formats	Save results in TXT or JSON for reporting
+Customizable	Configurable threads, wordlists, and timeouts
+Safe Operation	No exploitation, only reconnaissance
+🎯 COMPLETE USE CASES
+1. 🔍 Bug Bounty Hunting
+Scenario: Finding vulnerable subdomains for bug bounty programs
+
+bash
+# Initial reconnaissance
+python main.py --target target.com --threads 20 --json
+
+# Deep scan with custom wordlist
+python main.py --target target.com --wordlist bug_bounty_wordlist.txt --threads 30
+What you find:
+
+Staging environments
+
+Development servers
+
+Admin panels
+
+API endpoints
+
+Old versions of applications
+
+2. 🛡️ Security Assessment
+Scenario: Internal security audit of company infrastructure
+
+bash
+# Comprehensive scan
+python main.py --target company.com --output ./audit_results --threads 25 --timeout 8
+
+# Quick check with minimal output
+python main.py --target company.com --quiet --output ./quick_scan
+What you find:
+
+Unsecured admin panels
+
+Exposed documentation
+
+Test environments
+
+Forgotten subdomains
+
+Legacy applications
+
+3. 🏢 Corporate Reconnaissance
+Scenario: Understanding your organization's attack surface
+
+bash
+# Full scan with detailed output
+python main.py --target mycompany.com --output ./recon --threads 30 --json
+
+# Check specific subdomains only
+python main.py --target mycompany.com --no-http --quiet
+What you find:
+
+All registered subdomains
+
+Active services
+
+Potential entry points
+
+Network infrastructure details
+
+4. 📚 Educational/Learning
+Scenario: Security research and learning
+
+bash
+# Basic scan for learning
+python main.py --target testlab.local
+
+# Practice with custom wordlist
+python main.py --target testlab.local --wordlist practice.txt --threads 5
+What you learn:
+
+DNS resolution
+
+HTTP response codes
+
+Directory enumeration techniques
+
+Subdomain discovery methods
+
+5. 🔧 Pentesting Preparation
+Scenario: Pre-engagement reconnaissance
+
+bash
+# Initial footprinting
+python main.py --target client.com --output ./footprint --threads 20
+
+# Detailed scanning with all options
+python main.py --target client.com --wordlist custom.txt --output ./detailed --threads 30 --json
+What you get:
+
+Complete subdomain list
+
+Working HTTP/HTTPS services
+
+Directory structure
+
+Attack surface overview
+
+🚀 INSTALLATION GUIDE
+Prerequisites
+bash
+# Check Python version
+python --version  # Must be 3.8+
+
+# Install pip if not installed
+python -m ensurepip --upgrade
+Step-by-Step Installation
+bash
+# 1. Clone the repository
+git clone https://github.com/vimalbijalwan/DirSubFinder.git
+cd DirSubFinder
+
+# 2. Create virtual environment (recommended)
+python -m venv venv
+
+# 3. Activate virtual environment
+# On Linux/Mac:
+source venv/bin/activate
+# On Windows:
+venv\Scripts\activate
+
+# 4. Install dependencies
+pip install -r requirements.txt
+
+# 5. Verify installation
+python main.py --version
+Docker Installation (Optional)
+bash
+# Build Docker image
+docker build -t dirsubfinder .
+
+# Run with Docker
+docker run -it --rm dirsubfinder --target example.com
+💻 COMMAND LINE INTERFACE
+Basic Syntax
+bash
+python main.py --target <DOMAIN> [OPTIONS]
+Complete Options Reference
+Option	Short	Description	Default	Example
+--target	-t	Target domain	Required	--target example.com
+--output	-o	Output directory	./output	--output ./results
+--threads	-T	Concurrent threads	10	--threads 30
+--wordlist	-w	Custom wordlist	Default	-w custom.txt
+--json	-j	JSON output	False	--json
+--quiet	-q	Quiet mode	False	--quiet
+--timeout	-	Request timeout	5s	--timeout 10
+--no-http	-	Skip HTTP checks	False	--no-http
+--version	-v	Show version	-	--version
+--help	-h	Show help	-	--help
+🔧 ALL COMMANDS WITH EXAMPLES
+1. Basic Commands
+bash
+# Basic scan
+python main.py --target example.com
+
+# Scan with custom output directory
+python main.py --target example.com --output ./my_scan
+
+# Quiet mode (minimal output)
+python main.py --target example.com --quiet
+
+# Show help
+python main.py --help
+
+# Show version
+python main.py --version
+2. Performance Commands
+bash
+# High-speed scan with 30 threads
+python main.py --target example.com --threads 30
+
+# Slow and thorough scan
+python main.py --target example.com --threads 5 --timeout 10
+
+# Ultra-fast scan
+python main.py --target example.com --threads 50 --timeout 3
+3. Output Commands
+bash
+# Save as JSON
+python main.py --target example.com --json
+
+# Save as TXT (default)
+python main.py --target example.com
+
+# Save in custom location
+python main.py --target example.com --output ./custom_dir
+
+# Both TXT and JSON formats
+python main.py --target example.com --json  # JSON format
+python main.py --target example.com         # TXT format (default)
+4. Custom Wordlist Commands
+bash
+# Use custom directory wordlist
+python main.py --target example.com --wordlist my_dirs.txt
+
+# Use security-specific wordlist
+python main.py --target example.com --wordlist security_dirs.txt
+
+# Use bug bounty wordlist
+python main.py --target example.com --wordlist bug_bounty.txt
+5. Advanced Commands
+bash
+# Complete scan with all options
+python main.py --target example.com --output ./complete --threads 25 --timeout 8 --json --wordlist custom.txt
+
+# Quick scan without HTTP checks
+python main.py --target example.com --no-http --quiet
+
+# Production-ready scan
+python main.py --target example.com --threads 20 --timeout 5 --json --output ./production_scan
+6. Combined Commands
+bash
+# Bug bounty scan
+python main.py --target bugbounty.com --threads 30 --wordlist bugbounty.txt --json --output ./bounty
+
+# Corporate audit
+python main.py --target corporate.com --threads 20 --timeout 8 --output ./audit
+
+# Security research
+python main.py --target research.com --wordlist research.txt --threads 10 --no-http
+
+# Quick assessment
+python main.py --target client.com --quiet --threads 30 --output ./quick
+🌟 REAL-WORLD SCENARIOS
+Scenario 1: Bug Bounty Program
+Context: A security researcher participating in a bug bounty program
+
+bash
+# Step 1: Initial reconnaissance
+python main.py --target target.com --threads 20 --json --output ./initial
+
+# Step 2: Deep scan on interesting subdomains
+python main.py --target dev.target.com --wordlist admin_wordlist.txt --threads 30
+
+# Step 3: Focus on admin panels
+python main.py --target admin.target.com --threads 15
+Expected Output:
+
+text
+[*] Enumerating subdomains...
+[+] Found: api.target.com (104.18.32.15) [200]
+[+] Found: dev.target.com (104.18.32.16) [200]
+[+] Found: stage.target.com (104.18.32.17) [200]
+[+] Found: admin.target.com (104.18.32.18) [200]
+
+[*] Enumerating directories...
+[+] Found: /admin (Status: 200)
+[+] Found: /login (Status: 200)
+[+] Found: /api/v2 (Status: 200)
+[+] Found: /dashboard (Status: 403)
+Scenario 2: Corporate Security Audit
+Context: Internal security team auditing company infrastructure
+
+bash
+# Step 1: Full company scan
+python main.py --target company.com --threads 25 --timeout 8 --output ./audit
+
+# Step 2: Analyze staging environment
+python main.py --target staging.company.com --threads 20
+
+# Step 3: Check production servers
+python main.py --target prod.company.com --threads 15 --no-http
+Expected Output:
+
+text
+==================================================
+SUMMARY
+--------------------------------------------------
+Target: company.com
+Subdomains Found: 15
+Directories Found: 42
+Reachable Hosts: 30
+Results: ./audit/company.com/
+==================================================
+Scenario 3: Penetration Testing Engagement
+Context: Professional pentester performing authorized assessment
+
+bash
+# Step 1: Footprinting
+python main.py --target client.com --output ./footprint --threads 20
+
+# Step 2: Service discovery
+python main.py --target client.com --no-http --quiet
+
+# Step 3: Directory enumeration on found subdomains
+for sub in $(cat subdomains.txt); do
+    python main.py --target $sub --wordlist quick.txt --quiet
+done
+📊 OUTPUT ANALYSIS
+Understanding the Results
+Subdomain Results
+text
+[+] Found: www.target.com (93.184.216.34) [200]
+[+] Found: mail.target.com (93.184.216.35) [200]
+[+] Found: api.target.com (93.184.216.36) [404]
+Analysis:
+
+www.target.com (200) → Active website
+
+mail.target.com (200) → Mail server active
+
+api.target.com (404) → API endpoint exists but returns 404
+
+Directory Results
+text
+[+] Found: /admin (Status: 200)
+[+] Found: /login (Status: 200)
+[+] Found: /backup (Status: 403)
+[+] Found: /phpmyadmin (Status: 404)
+Analysis:
+
+/admin (200) → Accessible admin panel - HIGH PRIORITY
+
+/login (200) → Login page accessible
+
+/backup (403) → Exists but access denied
+
+/phpmyadmin (404) → Not found (safe)
+
+Priority Matrix
+Status Code	Priority	Action
+200 (OK)	🔴 High	Immediate investigation needed
+301/302 (Redirect)	🟡 Medium	Check redirect destination
+403 (Forbidden)	🟡 Medium	Try different access methods
+401 (Unauthorized)	🟡 Medium	Authentication required
+404 (Not Found)	🟢 Low	Usually safe
+⚠️ TROUBLESHOOTING
+Common Issues and Solutions
+1. DNS Resolution Errors
+Error: dns.resolver.NXDOMAIN
+
+Solution:
+
+bash
+# Check domain validity
+python main.py --target invalid-domain.com
+
+# Use a different DNS server
+# (Add custom DNS in code)
+2. Connection Timeouts
+Error: requests.exceptions.Timeout
+
+Solution:
+
+bash
+# Increase timeout
+python main.py --target example.com --timeout 15
+
+# Reduce threads
+python main.py --target example.com --threads 5
+3. Rate Limiting Issues
+Error: HTTP 429 Too Many Requests
+
+Solution:
+
+bash
+# Reduce threads
+python main.py --target example.com --threads 3
+
+# Add delay between requests
+# (Modify code to add sleep)
+4. SSL Certificate Errors
+Solution:
+
+bash
+# Use --no-http to skip SSL checks
+python main.py --target example.com --no-http
+Error Codes Reference
+Error	Description	Solution
+NXDOMAIN	Domain doesn't exist	Verify domain spelling
+ConnectionRefusedError	Port closed	Check if service is running
+TimeoutError	Request took too long	Increase timeout or threads
+SSL_ERROR	Certificate verification failed	Use --no-http
+📝 BEST PRACTICES
+1. Ethical Scanning Guidelines
+bash
+# ✅ DO:
+# Scan only authorized targets
+python main.py --target my-own-domain.com
+
+# Use proper authorization
+python main.py --target authorized-client.com
+
+# Respect rate limits
+python main.py --target example.com --threads 5
+
+# ❌ DON'T:
+# Scan without permission
+python main.py --target competitor.com
+
+# Use excessive threads
+python main.py --target example.com --threads 100
+
+# Ignore robots.txt
+# (The tool respects standard practices)
+2. Performance Optimization
+bash
+# For large targets (100+ subdomains)
+python main.py --target bigcompany.com --threads 30 --timeout 5
+
+# For small targets (< 20 subdomains)
+python main.py --target smallbusiness.com --threads 10 --timeout 8
+
+# For bug hunting
+python main.py --target target.com --threads 20 --timeout 6
+3. Wordlist Management
+bash
+# Create custom wordlists
+echo "admin
+login
+api
+dashboard
+portal" > my_wordlist.txt
+
+# Use security-focused wordlists
+python main.py --target example.com --wordlist security_dirs.txt
+
+# Combine wordlists for comprehensive scanning
+cat default.txt custom.txt > combined.txt
+python main.py --target example.com --wordlist combined.txt
+4. Output Management
+bash
+# Organize scans by date
+python main.py --target example.com --output ./scans/2024-01-01
+
+# Keep both JSON and TXT
+python main.py --target example.com --json
+
+# Create reports for clients
+# Use the JSON output to generate professional reports
+⚖️ ETHICAL GUIDELINES
+Legal Compliance Checklist
+□ Have explicit written permission from the domain owner
+□ Are you testing only within the scope defined in the agreement?
+□ Are you following all applicable laws and regulations?
+□ Are you protecting the confidentiality of discovered data?
+□ Are you reporting findings to the appropriate parties?
+Acceptable Use Policy
+✅ Permitted Uses:
+
+Security testing your own systems
+
+Authorized penetration testing engagements
+
+Bug bounty programs with proper authorization
+
+Educational research in controlled environments
+
+❌ Prohibited Uses:
+
+Scanning without authorization
+
+Exploiting discovered vulnerabilities
+
+Disrupting services (DoS/DDoS)
+
+Stealing or accessing unauthorized data
+
+Commercial exploitation of findings
+
+Responsible Disclosure
+bash
+# If you find vulnerabilities:
+1. Document everything carefully
+2. Don't exploit the vulnerability
+3. Report to the security team
+4. Give reasonable time for fixes
+5. Coordinate disclosure responsibly
+📚 QUICK REFERENCE CARD
+Most Used Commands
+bash
+# Basic Scan
+python main.py --target example.com
+
+# Fast Scan
+python main.py --target example.com --threads 30 --quiet
+
+# Detailed Scan
+python main.py --target example.com --output ./results --threads 20 --json
+
+# Custom Wordlist
+python main.py --target example.com --wordlist custom.txt
+
+# Production Scan
+python main.py --target example.com --threads 25 --timeout 8 --json --output ./production
+Common Scenarios Quick Commands
+Scenario	Command
+Bug Bounty	python main.py --target target.com --threads 30 --json
+Corporate Audit	python main.py --target company.com --output ./audit --threads 20
+Quick Check	python main.py --target example.com --quiet --no-http
+Deep Scan	python main.py --target example.com --wordlist full.txt --threads 15
+Learning	python main.py --target testlab.local --threads 5
+🔄 VERSION HISTORY
+Version	Date	Changes
+1.0.0	2024-01-01	Initial release
+-	-	Subdomain enumeration
+-	-	Directory enumeration
+-	-	HTTP/HTTPS checking
+-	-	Multiple output formats
+🤝 SUPPORT
+Getting Help
+bash
+# Show help
+python main.py --help
+
+# Check version
+python main.py --version
+
+# Verbose output for debugging
+python main.py --target example.com  # Default output
+Contact
+Author: Vimal Bijalwan
+GitHub: vimalbijalwan
+Email: vimalbijalwan@email.com
+LinkedIn: Vimal Bijalwan
+
+📋 FINAL SUMMARY
+DirSubFinder is a complete, professional-grade reconnaissance tool that enables:
+
+Fast and thorough subdomain discovery
+
+Comprehensive directory enumeration
+
+HTTP/HTTPS service verification
+
+Professional reporting capabilities
+
+Ethical and legal security testing
+
+Key Takeaways
+✅ Always get permission before scanning
+✅ Use appropriate threading for target capacity
+✅ Document all findings for reporting
+✅ Respect rate limits and server resources
+✅ Protect discovered data appropriately
+✅ Report vulnerabilities responsibly
+
+🔒 Remember: With great power comes great responsibility. Use this tool ethically and legally.
+
+<p align="center"> <b>Made with ❤️ by Vimal Bijalwan</b> </p><p align="center"> <b>Version 1.0.0 | Cybersecurity Reconnaissance Tool</b> </p>
+END OF DOCUMENTATION
+
