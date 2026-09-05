@@ -1,0 +1,8 @@
+# requirements.txt
+# DirSubFinder Requirements
+# Made by Vimal Bijalwan
+
+requests>=2.31.0
+dnspython>=2.4.0
+urllib3>=2.0.0
+colorama>=0.4.6
